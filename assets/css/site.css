@@ -1988,7 +1988,7 @@ textarea.finput { min-height: 112px; resize: vertical; }
   opacity: var(--glow-o, 1);
 }
 
-.home-hero__sigil { display: block; width: clamp(208px, min(64vw, 39vh), 395px); filter: drop-shadow(0 0 7px rgba(93,184,240,.40)) drop-shadow(0 0 18px rgba(42,145,220,.20)); }
+.home-hero__sigil { display: block; width: clamp(208px, min(72vw, 39vh), 395px); filter: drop-shadow(0 0 7px rgba(93,184,240,.40)) drop-shadow(0 0 18px rgba(42,145,220,.20)); }
 
 .sigil-flight { filter: none; }   /* plain while flying: the glow filter cost a frame on Safari */
 
