@@ -2721,3 +2721,19 @@ html.js :is(.editorial__media, .story__portrait) img:not(.is-loaded) { opacity: 
 @media (max-width: 599px) {
   .chapters__bridge.story-heading { font-size: clamp(1.2rem, 5vw, 1.4rem); }
 }
+
+/* ==========================================================================
+   Design principles layer: signal colour, scale contrast, one hero
+   per page. Remove this block to revert.
+   ========================================================================== */
+
+/* 1 Signal colour: brass marks what you can tap. Text links carry a brass
+   rule, matching the buttons' brass border. */
+.text-cta { background-image: linear-gradient(rgba(200,161,90,.6), rgba(200,161,90,.6)); }
+
+/* 3 Fewer in-between sizes: subtitles take the heading size and item titles
+   the lede size, leaving hero / display / heading / lede / body / small. */
+:root { --t-subtitle: var(--t-heading); --t-sub: var(--t-lede); }
+
+/* 4 One hero per page: the opening title is clearly the largest thing. */
+.page-approach .page-hero h1, #path .story__home.story-heading { font-size: var(--t-hero); line-height: 1.04; }
