@@ -601,6 +601,12 @@ html.js.motion-ready [data-reveal-img]:is(.editorial__media, .story__portrait) i
   min-height: 38px;
 }
 
+/* A 44px tap area without moving anything (WCAG 2.5.8, Fitts's law). */
+.text-cta, .site-foot__privacy { position: relative; }
+.text-cta::after, .site-foot__privacy::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 44px; transform: translateY(-50%);
+}
+
 .text-cta span[aria-hidden] { color: var(--accent); transition: transform var(--motion-fast) var(--ease); }
 
 .text-cta:hover span[aria-hidden], .text-cta:focus-visible span[aria-hidden] { transform: translateX(3px); }

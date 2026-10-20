@@ -1333,7 +1333,8 @@
           return;
         }
         if ((el.type === 'checkbox' || el.type === 'radio') && !el.checked) return;
-        data.append(el.name, el.value);
+        // Accept a phone number typed any way; send it without spaces, dashes or brackets.
+        data.append(el.name, el.type === 'tel' ? el.value.replace(/[\s().-]/g, '') : el.value.trim());
       });
       fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: data })
         .then(function (r) {
