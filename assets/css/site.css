@@ -58,11 +58,11 @@
   --ease-image: cubic-bezier(.25,.46,.45,.94);   /* soft ease-out, no overshoot */
   --ease-calm: var(--ease-image);
   --motion-text: 555ms;
-  --stagger: 100ms;                  /* between items in a list or grid */
+  --stagger: 60ms;                  /* between items in a list or grid */
   /* Reveal: site.js marks the readable blocks of each section (.rv-item,
      numbered --ci in reading order); they cascade top to bottom with one
      duration, curve and rise. site.js reads --rv-time. */
-  --rv-time: 555ms; --rv-rise: 8px; --rv-ease: cubic-bezier(.22, .61, .36, 1);
+  --rv-time: 380ms; --rv-rise: 8px; --rv-ease: cubic-bezier(.22, .61, .36, 1);
 }
 @media (min-width: 769px) {
   :root { --header-h: 58px; }
@@ -83,7 +83,8 @@
     --t-display: clamp(1.75rem, 7.4vw, 2.1rem); --t-heading: clamp(1.45rem, 6.3vw, 1.65rem);
     --t-subtitle: clamp(1.3rem, 5.8vw, 1.45rem); --t-lede: clamp(1.08rem, 4.6vw, 1.15rem);   /* ≈23 / 18px */
     --s-3: 1.25rem;
-    --stagger: 80ms;
+    --stagger: 50ms;
+    --t-body: 1.1rem; --t-small: .95rem;   /* phone body ≈17.6px; smallest text ≈15px */
   }
 }
 
@@ -360,7 +361,7 @@ main :is(p, li, dd):not([class]), .prose p:not([class]), .accordion__body p:not(
   text-wrap: nowrap;
   /* The one size for the small gold section labels (the Availability / Scope
      & Suitability size), on every page and screen. */
-  font-size: clamp(.88rem, 3.8vw, 1rem); letter-spacing: .14em; line-height: 1.4; font-weight: 400;
+  font-size: clamp(.95rem, 3.8vw, 1rem); letter-spacing: .14em; line-height: 1.4; font-weight: 400;
 }
 
 .marker--center { justify-content: center; }
@@ -659,7 +660,11 @@ html.js.motion-ready [data-reveal-img]:is(.editorial__media, .story__portrait) i
 
 .nav-mobile .btn { border: 1px solid var(--accent-brass); border-radius: 999px; }
 @media (max-width: 768px) {
-  .next-section { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 44px; height: 44px; }
+  .next-section { right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); width: 34px; height: 34px; }
+  .next-section::after { content: ""; position: absolute; inset: -5px; }   /* keeps a 44px tap area */
+  .next-section.is-shown { opacity: .7; }
+  /* a soft dark veil behind text, so cloud textures never wash it out */
+  main :is(p, li, dt, dd, h1, h2, h3, summary, .lede) { text-shadow: 0 0 16px rgba(5,10,24,.85), 0 1px 3px rgba(5,10,24,.7); }
 }
 @media (max-width: 599px) {
   .btn { padding: 11px 17px; min-height: 44px; }
@@ -701,6 +706,7 @@ html.js.motion-ready [data-reveal-img]:is(.editorial__media, .story__portrait) i
   display: flex; align-items: center; border-bottom: 1px solid transparent;
   transition: color var(--motion-fast) var(--ease), border-color var(--motion-fast) var(--ease);
   color: rgba(247,246,242,.82);
+  font-size: var(--t-small);   /* a step below body text, so the menu doesn't compete with reading */
 }
 
 .nav__link[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); border-bottom-color: var(--accent-brass); }
@@ -1615,7 +1621,7 @@ html.js :is(.bg-1, .bg-2, .bg-3, .bg-4):not(.bgt-on)::after { background-image: 
 .pathways__item--blue { --hl: var(--emphasis-blue); --hl-rgb: 93,184,240; }
 .pathways__icon { width: var(--pw-icon); height: var(--pw-icon); object-fit: contain; margin-bottom: 4px; }
 .pathways__name { font-family: var(--serif); font-size: clamp(1.05rem, 4.6vw, 1.35rem); line-height: 1.1; text-wrap: balance; transition: color var(--motion-fast) var(--ease); }
-.pathways__line { color: var(--muted); font-size: clamp(.78rem, 3.3vw, .9rem); line-height: 1.45; }
+.pathways__line { color: var(--muted); font-size: clamp(.95rem, 3.3vw, 1rem); line-height: 1.45; }
 .pathways__line > span { display: block; text-wrap: balance; }   /* one sentence per line */
 .pathways__arrow { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); }
 .pathways__item:is(:hover, :focus-visible) { border-color: rgba(var(--hl-rgb), .5); background: linear-gradient(180deg, rgba(var(--hl-rgb), .10), rgba(var(--hl-rgb), .03) 60%, rgba(14,20,40,.28)); }
@@ -1681,7 +1687,7 @@ button.pathways__item { width: 100%; font: inherit; cursor: pointer; }
   line-height: 1.3;
   /* Five Areas label: bold, a touch larger, tracking eased for bold caps
      (uppercase needs extra spacing; bold needs a little less than light). */
-  font-weight: 700; font-size: .82rem; letter-spacing: .13em; margin-bottom: 4px;
+  font-weight: 700; font-size: var(--t-small); letter-spacing: .13em; margin-bottom: 4px;
   /* Homepage Five Areas: plain white labels; each description's highlight in
      its own set colour (gold-accent = gold, inline-accent = blue), whatever
      the area. */
@@ -2099,6 +2105,12 @@ html.kauyumari-open, html.kauyumari-open body { overflow: hidden; }
   padding-left: 18px; border-left: 1px solid var(--warm-soft);
 }
 
+/* Why now: two short columns, changing and calling, each with the triad's gold rule. */
+.why-now__split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) clamp(24px, 5vw, 64px); width: 100%; margin-top: var(--s-1); }
+.why-now__split > div { display: grid; gap: 10px; align-content: start; }
+.why-now__split .eyebrow { color: var(--accent-brass); margin: 0; }
+@media (max-width: 599px) { .why-now__split { grid-template-columns: 1fr; } }
+
 /* Phones: a calmer square crop on the faces and hands; wide: the natural 4:5. */
 .editorial__media--person img { width: 100%; aspect-ratio: 1; object-fit: cover; }
 
@@ -2138,7 +2150,7 @@ html.kauyumari-open, html.kauyumari-open body { overflow: hidden; }
   background: none;
 }
 
-.areas__label { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--text); transition: color var(--motion-fast) var(--ease); margin-top: 6px; }
+.areas__label { font-size: var(--t-small); letter-spacing: .16em; text-transform: uppercase; color: var(--text); transition: color var(--motion-fast) var(--ease); margin-top: 6px; }
 
 .areas a:focus-visible { outline-offset: 6px; }
 
@@ -2255,7 +2267,7 @@ html.js :is(.editorial__media, .story__portrait) img:not(.is-loaded) { opacity: 
 }
 
 @media (max-width: 599px) {
-  .areas__label { font-size: .68rem; letter-spacing: .1em; margin-top: 4px; }
+  .areas__label { font-size: .95rem; letter-spacing: 0; text-transform: none; margin-top: 4px; }   /* sentence case fits five across at a readable size */
   .begin__statements--wide p { max-width: none; font-size: clamp(1.6rem, 6.9vw, 2.55rem); }
   .home-hero__inner { transform: translateY(-28px); }
   .hero-sigil-wrap { margin: 34px 0; }
@@ -2265,7 +2277,7 @@ html.js :is(.editorial__media, .story__portrait) img:not(.is-loaded) { opacity: 
    word, all on one connected movement. */
 @media (max-width: 599px) {
   .areas { --node: min(56px, calc((100vw - 2 * var(--gutter, 16px)) / 5 - 4px)); --icon: var(--node); margin-top: calc(40px - var(--s-3)); margin-bottom: calc(30px - var(--s-3)); }
-  .areas__word { font-size: .92rem; }
+  .areas__word { font-size: .95rem; }
   /* "My name is Vinay Swaminathan." sized for one line on any phone; it
      wraps only if a reader enlarges text spacing. */
   #meet-title { text-wrap: balance; font-size: min(2rem, calc((100vw - 2 * var(--gutter)) / 13)); }
@@ -2380,7 +2392,7 @@ html.js :is(.editorial__media, .story__portrait) img:not(.is-loaded) { opacity: 
 .face__tip {   /* desktop: the full word just below the letter */
   position: absolute; top: calc(100% + 8px); left: 50%; z-index: 2;
   padding: 4px 10px; border-radius: 999px; white-space: nowrap;
-  font-family: var(--sans); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text);
+  font-family: var(--sans); font-size: var(--t-small); letter-spacing: .14em; text-transform: uppercase; color: var(--text);
   background: rgba(8,16,30,.92); border: 1px solid var(--c-soft);
   opacity: 0; transform: translate(-50%, -4px); pointer-events: none;
   transition: opacity var(--motion-fast) var(--ease), transform var(--motion-fast) var(--ease);
@@ -2737,3 +2749,11 @@ html.js :is(.editorial__media, .story__portrait) img:not(.is-loaded) { opacity: 
 
 /* 4 One hero per page: the opening title is clearly the largest thing. */
 .page-approach .page-hero h1, #path .story__home.story-heading { font-size: var(--t-hero); line-height: 1.04; }
+
+
+/* Phones and tablets: the section bar slides away while reading down and returns on scroll up (site.js toggles .is-tucked). */
+@media (max-width: 1099px) {
+  .js .subnav { transition: transform 240ms var(--ease), opacity 240ms var(--ease); }
+  .js .subnav.is-tucked { transform: translateY(-100%); opacity: 0; pointer-events: none; }
+}
+@media (prefers-reduced-motion: reduce) { .js .subnav { transition: none; } }

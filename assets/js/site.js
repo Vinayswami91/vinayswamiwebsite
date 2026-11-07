@@ -1129,6 +1129,20 @@
         the sticky bars; at the very bottom the last reached section wins.
      --------------------------------------------------------------------- */
   var subnav = document.querySelector('.subnav');
+  /* Phones and tablets: tuck the section bar away on scroll down, bring it back on scroll up. */
+  if (subnav && window.matchMedia) {
+    var narrow = window.matchMedia('(max-width: 1099px)'), lastY = window.scrollY, ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function () {
+        var y = window.scrollY;
+        if (!narrow.matches || y < 160) subnav.classList.remove('is-tucked');
+        else if (y > lastY + 6) subnav.classList.add('is-tucked');
+        else if (y < lastY - 6) subnav.classList.remove('is-tucked');
+        lastY = y; ticking = false;
+      });
+    }, { passive: true });
+  }
   var subnavLinks = document.querySelectorAll('.subnav [data-section]');
   if (subnav && subnavLinks.length) {
     var sectionIds = Array.prototype.map.call(subnavLinks, function (a) { return a.getAttribute('data-section'); });
