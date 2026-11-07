@@ -1304,6 +1304,79 @@
   }
 
   /* ---------------------------------------------------------------------
+     7a. Alignment form, one question at a time. The form stays one normal
+         form (same fields, same Web3Forms submission, same validation);
+         this only shows one field or fieldset per screen, with Back/Next
+         and a count. Without JavaScript the whole form shows as before.
+     --------------------------------------------------------------------- */
+  (function () {
+    var form = document.getElementById('alignment-form');
+    if (!form) return;
+    var steps = [];
+    Array.prototype.forEach.call(form.children, function (el) {
+      if (el.classList.contains('form__row')) {
+        Array.prototype.forEach.call(el.children, function (c) { if (c.classList.contains('ffield')) steps.push(c); });
+      } else if (el.matches('.ffield, fieldset')) steps.push(el);
+    });
+    if (steps.length < 2) return;
+    var tail = Array.prototype.filter.call(form.children, function (el) {
+      return steps.indexOf(el) < 0 && !el.classList.contains('form__row') && !el.matches('input');
+    });
+    form.classList.add('form--steps');
+    var head = document.createElement('div');
+    head.className = 'steps-head';
+    head.innerHTML = '<p class="steps-count" aria-live="polite"></p><div class="steps-bar" aria-hidden="true"><i></i></div>';
+    form.insertBefore(head, form.firstChild);
+    var nav = document.createElement('div');
+    nav.className = 'steps-nav';
+    nav.innerHTML = '<button type="button" class="btn btn--outline steps-back">&larr; Back</button><button type="button" class="btn btn--solid steps-next">Next &rarr;</button>';
+    form.appendChild(nav);
+    var back = nav.querySelector('.steps-back'), next = nav.querySelector('.steps-next');
+    var count = head.querySelector('.steps-count'), bar = head.querySelector('.steps-bar i');
+    var at = 0;
+    function fields(step) { return step.querySelectorAll('input:not([type="hidden"]), textarea, select'); }
+    function show(n, focus) {
+      at = Math.max(0, Math.min(n, steps.length - 1));
+      var last = at === steps.length - 1;
+      steps.forEach(function (s, k) { s.hidden = k !== at; });
+      tail.forEach(function (el) { el.hidden = !last; });
+      back.hidden = at === 0;
+      next.hidden = last;
+      count.textContent = 'Question ' + (at + 1) + ' of ' + steps.length;
+      bar.style.width = (100 * at / steps.length) + '%';
+      if (focus) {
+        var f = fields(steps[at])[0];
+        if (f) f.focus({ preventScroll: true });
+        head.scrollIntoView({ block: 'nearest' });
+      }
+    }
+    function valid() {
+      var list = fields(steps[at]);
+      for (var k = 0; k < list.length; k++) {
+        if (!list[k].checkValidity()) { list[k].reportValidity(); return false; }
+      }
+      return true;
+    }
+    next.addEventListener('click', function () { if (valid()) show(at + 1, true); });
+    back.addEventListener('click', function () { show(at - 1, true); });
+    form.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' || e.shiftKey || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'BUTTON') return;
+      if (at < steps.length - 1) { e.preventDefault(); if (valid()) show(at + 1, true); }
+    });
+    // A single choice (radio) moves on by itself, except on the last question.
+    form.addEventListener('change', function (e) {
+      if (e.target.type === 'radio' && at < steps.length - 1 && steps[at].contains(e.target)) {
+        setTimeout(function () { if (valid()) show(at + 1, true); }, 250);
+      }
+    });
+    // If the browser blocks submission on a hidden invalid field, jump to it.
+    form.addEventListener('invalid', function (e) {
+      for (var k = 0; k < steps.length; k++) { if (steps[k].contains(e.target) && k !== at) { show(k, true); break; } }
+    }, true);
+    show(0, false);
+  })();
+
+  /* ---------------------------------------------------------------------
      7b. Web3Forms — one submission handler for every form[data-web3]
          (Alignment Call, Group interest, Collaboration). Each form names its
          own success panel (data-sent) and error box (data-errors); its

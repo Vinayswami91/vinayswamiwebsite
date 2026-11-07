@@ -2757,3 +2757,13 @@ html.js :is(.editorial__media, .story__portrait) img:not(.is-loaded) { opacity: 
   .js .subnav.is-tucked { transform: translateY(-100%); opacity: 0; pointer-events: none; }
 }
 @media (prefers-reduced-motion: reduce) { .js .subnav { transition: none; } }
+
+/* Alignment form, one question at a time (site.js 7a). */
+.form--steps [hidden] { display: none !important; }
+.form--steps .flabel, .form--steps legend { font-family: var(--serif); font-size: var(--t-lede); line-height: 1.3; }
+.steps-head { display: grid; gap: 8px; }
+.steps-count { margin: 0; font-size: var(--t-small); color: var(--muted); }
+.steps-bar { height: 3px; background: rgba(247,246,242,.14); border-radius: 3px; overflow: hidden; }
+.steps-bar i { display: block; height: 100%; width: 0; background: var(--accent-brass); transition: width 300ms var(--ease); }
+.steps-nav { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (prefers-reduced-motion: reduce) { .steps-bar i { transition: none; } }
