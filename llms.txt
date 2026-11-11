@@ -36,5 +36,5 @@ There is no API or booking system. A person (not an agent) starts by filling in 
 
 ## Optional
 
-- [Privacy and Scope](https://www.vinayswaminathan.com/privacy.html): how form submissions are handled (read by Vinay alone; never sold or added to a mailing list, except the opt-in Pattern Map waitlist, used only to announce its opening).
+- [Privacy and Scope](https://www.vinayswaminathan.com/privacy.html): how form submissions are handled (read by Vinay alone; never sold or added to a mailing list).
 - [Sitemap](https://www.vinayswaminathan.com/sitemap.xml)
