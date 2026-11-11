@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Start Here | Vinay Swaminathan, Healer &amp; Breathwork Guide</title>
-<meta name="description" content="New here? Hear about The Pattern Map, or book a free Alignment Call with Vinay Swaminathan.">
+<meta name="description" content="New here? Join the beta for The Pattern Map, or book a free Alignment Call with Vinay Swaminathan.">
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#0E1428">
 <link rel="canonical" href="https://www.vinayswaminathan.com/start.html">
@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Vinay Swaminathan">
 <meta property="og:title" content="Start Here | Vinay Swaminathan, Healer &amp; Breathwork Guide">
-<meta property="og:description" content="New here? Hear about The Pattern Map, or book a free Alignment Call with Vinay Swaminathan.">
+<meta property="og:description" content="New here? Join the beta for The Pattern Map, or book a free Alignment Call with Vinay Swaminathan.">
 <meta property="og:url" content="https://www.vinayswaminathan.com/start.html">
 <meta property="og:image" content="https://www.vinayswaminathan.com/assets/images/vinay-facilitator.jpg">
 <meta property="og:image:alt" content="Vinay Swaminathan">
@@ -75,7 +75,7 @@
     <h1 data-seq id="s1">Here you are welcome.</h1>
     <p data-seq class="prose">I&rsquo;m Vinay, a healer and breathwork guide in the Auroville bioregion. Here are two ways in, depending on where you are.</p>
     <nav data-seq class="quiet-links" aria-label="On this page">
-      <a class="text-cta" href="#pattern-map">The Pattern Map <span aria-hidden="true">&rarr;</span></a>
+      <a class="text-cta" href="#pattern-map">Join the Pattern Map beta <span aria-hidden="true">&rarr;</span></a>
       <a class="text-cta" href="#work">Work with me <span aria-hidden="true">&rarr;</span></a>
     </nav>
   </div>
@@ -84,12 +84,39 @@
 <section id="pattern-map" class="section bg-2 t-v2" aria-labelledby="s2">
   <div data-reveal class="wrap stack stack--lg">
     <h2 id="s2" class="marker">The Pattern Map</h2>
-    <p class="prose">A self-inquiry assessment I&rsquo;m building, to help you see the pattern that shapes how you live, and where it is asking you to grow. It opens soon.</p>
-    <p class="prose">If it calls to you, write to me. I read every message myself.</p>
-    <nav class="quiet-links" aria-label="Write to me">
-      <a class="text-cta" href="https://ig.me/m/vinay.swaminathan" target="_blank" rel="noopener">Message me on Instagram <span aria-hidden="true">&rarr;</span></a>
-      <a class="text-cta" href="connect.html">Write to me here <span aria-hidden="true">&rarr;</span></a>
-    </nav>
+    <p class="prose">I&rsquo;m building a self-inquiry assessment that shows you the pattern shaping how you live, and where it is asking you to grow.</p>
+    <p class="prose">Before it opens, I&rsquo;m inviting a small circle to take it first and help me shape it. If you feel the pull, join the beta. Your honest experience will guide what it becomes.</p>
+    <div class="contact-form">
+      <div role="status" tabindex="-1" id="beta-sent" class="form-sent" hidden>
+        <h3>Thank you, <span data-sent-name></span>.</h3>
+        <p>You&rsquo;re in the beta circle. I&rsquo;ll write to you when it&rsquo;s ready for you to take. To step out at any time, reply &ldquo;remove&rdquo; to any email from me.</p>
+      </div>
+
+      <div id="beta-errors" class="form-errors" role="alert" tabindex="-1" hidden></div>
+
+      <form id="beta-form" class="form" method="post" action="https://api.web3forms.com/submit" data-web3 data-sent="beta-sent" data-errors="beta-errors">
+        <input type="hidden" name="access_key" value="ec323d61-7be3-4555-b763-50858652113c">
+        <input type="hidden" name="from_name" value="vinayswaminathan.com">
+        <input type="hidden" name="subject" value="Pattern Map beta - vinayswaminathan.com">
+        <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form__row form__row--contact">
+          <div class="ffield">
+            <label class="flabel" for="b-name">Full name</label>
+            <input class="finput" id="b-name" name="name" required maxlength="120" autocomplete="name">
+          </div>
+          <div class="ffield">
+            <label class="flabel" for="b-email">Email</label>
+            <input class="finput" id="b-email" type="email" name="email" required autocomplete="email">
+          </div>
+        </div>
+        <div class="ffield">
+          <label class="flabel" for="b-why">What draws you to this? <span class="fhint">(optional)</span></label>
+          <textarea class="finput" id="b-why" name="message" rows="3" maxlength="2000"></textarea>
+        </div>
+        <label class="choice"><input type="checkbox" name="consent" value="Email me about the Pattern Map beta" required>Email me about the Pattern Map beta. Nothing else.</label>
+        <button class="btn btn--solid" type="submit">Join the beta <span aria-hidden="true">&rarr;</span></button>
+      </form>
+    </div>
   </div>
 </section>
 
