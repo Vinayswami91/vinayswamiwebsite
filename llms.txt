@@ -1,8 +1,8 @@
 # Vinay Swaminathan
 
-> Vinay Swaminathan is a healer and facilitator living in the Auroville bioregion, Tamil Nadu, India. He offers 1:1 Body Work, Breath Work and Shadow Work, and holds group experiences: breathwork journeys, conscious dance and sharing circles. 10 years of practice and facilitation; 1,000+ people supported.
+> Vinay Swaminathan is a healer and breathwork guide living in the Auroville bioregion, Tamil Nadu, India. He offers 1:1 Body Work, Breath Work and Shadow Work, and holds group experiences: breathwork journeys, conscious dance and sharing circles. 10 years of practice and facilitation; 1,000+ people supported.
 
-His work is rooted in emotional range, embodied awareness and the capacity to meet change and uncertainty with more choice and freedom. What matters to him is how inner work is lived in ordinary life.
+His work is rooted in emotional range, embodied awareness and the capacity to meet change and uncertainty with more choice and ease. What matters to him is how inner work is lived in ordinary life.
 
 ## When to use
 
@@ -36,5 +36,5 @@ There is no API or booking system. A person (not an agent) starts by filling in 
 
 ## Optional
 
-- [Privacy and Scope](https://www.vinayswaminathan.com/privacy.html): how form submissions are handled (read by Vinay alone; never sold or added to a mailing list).
+- [Privacy and Scope](https://www.vinayswaminathan.com/privacy.html): how form submissions are handled (read by Vinay alone; never sold or added to a mailing list, except the opt-in Pattern Map waitlist, used only to announce its opening).
 - [Sitemap](https://www.vinayswaminathan.com/sitemap.xml)
