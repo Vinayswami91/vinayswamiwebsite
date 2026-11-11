@@ -1016,7 +1016,7 @@ body:not(:has(.sessions li)) .subnav__upcoming { display: none; }
   height: min(560px, 100%); width: auto; max-width: calc(100vw - 32px);   /* never larger than its block, so never cut */
   aspect-ratio: 1100 / 1132;
   transform: translate(-50%, -50%);
-  background: url("../images/sigil-720.png") center / contain no-repeat;
+  background: url("../images/sigil-720.png?v=20261112") center / contain no-repeat;
   opacity: .07; pointer-events: none;
 }
 

@@ -471,7 +471,7 @@
             for (var i = 0; i < alpha.length; i++) alpha[i] = d[i * 4 + 3];
           } catch (err) { alpha = null; }
         };
-        im.src = 'assets/images/sigil-720.png';
+        im.src = 'assets/images/sigil-720.png?v=20261112';
       })();
       var onSigil = function (cx, cy, touch) {
         var r = heroSig.getBoundingClientRect();
